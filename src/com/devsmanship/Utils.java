@@ -5,18 +5,18 @@ import java.util.List;
 
 public class Utils {
 
-    public static List<CarModelClass> doTheMapping(List<String> carLines) {
-        List<CarModelClass> carList = new ArrayList<>();
+    public static List<CarModel> map(List<String> carLines) {
+        List<CarModel> carList = new ArrayList<>();
 
         for(String carLine : carLines) {
-            String[] carLineSplit = carLine.split(",");
+            String[] info = carLine.split(",");
 
-            CarModelClass car = new CarModelClass();
-            car.setModel(carLineSplit[0]);
-            car.setThisIsTheYear(Integer.parseInt(carLineSplit[1]));
-            car.setPrice(Double.parseDouble(carLineSplit[2]));
-            car.setColor(carLineSplit[3]);
-            car.setNumberOfDoors(Integer.parseInt(carLineSplit[4]));
+            CarModel car = new CarModel();
+            car.setModel(info[0]);
+            car.setYear(Integer.parseInt(info[1]));
+            car.setPrice(Double.parseDouble(info[2]));
+            car.setColor(info[3]);
+            car.setDoors(Integer.parseInt(info[4]));
             carList.add(car);
         }
 

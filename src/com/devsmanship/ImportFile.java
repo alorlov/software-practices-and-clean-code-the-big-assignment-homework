@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ImportFile {
+public class ImportCars {
 
     public static List<String> file = new ArrayList<>(
             Arrays.asList(

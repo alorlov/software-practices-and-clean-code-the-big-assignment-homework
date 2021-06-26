@@ -1,12 +1,12 @@
 package com.devsmanship;
 
-public class CarModelClass {
+public class CarModel {
 
     private String model;
-    private int thisIsTheYear;
+    private int year;
     private double price;
     private String color;
-    private int numberOfDoors;
+    private int doors;
 
     public String getModel() {
         return model;
@@ -16,12 +16,12 @@ public class CarModelClass {
         this.model = model;
     }
 
-    public int getThisIsTheYear() {
-        return thisIsTheYear;
+    public int getYear() {
+        return year;
     }
 
-    public void setThisIsTheYear(int thisIsTheYear) {
-        this.thisIsTheYear = thisIsTheYear;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public double getPrice() {
@@ -40,11 +40,11 @@ public class CarModelClass {
         this.color = color;
     }
 
-    public int getNumberOfDoors() {
-        return numberOfDoors;
+    public int getDoors() {
+        return doors;
     }
 
-    public void setNumberOfDoors(int numberOfDoors) {
-        this.numberOfDoors = numberOfDoors;
+    public void setDoors(int doors) {
+        this.doors = doors;
     }
 }

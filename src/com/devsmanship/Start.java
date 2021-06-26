@@ -11,9 +11,9 @@ import java.util.stream.Stream;
 public class Start {
 
     public void start() throws IOException {
-        List<String> l = ImportFile.file;
-        List<CarModelClass> carsThatAreMappedWithUtilsClass = Utils.doTheMapping(l);
-        List<CarModelClass> Cars = Filtering.filter(carsThatAreMappedWithUtilsClass,2000, 0, true);
-        Car_Service.printReportOneAndReportTwo(Cars, false);
+        List<String> l = ImportCars.file;
+        List<CarModel> mapped = Utils.map(l);
+        List<CarModel> filtered = Filtering.filter(mapped,2000, 0, true);
+        CarService.printReport(filtered, false);
     }
 }

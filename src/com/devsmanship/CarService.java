@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Car_Service {
+public class CarService {
 
     public void save() throws IOException {
-        List<String> l = ImportFile.file;
-        List<CarModelClass> carsThatAreMappedWithUtilsClass = Utils.doTheMapping(l);
+        List<String> l = ImportCars.file;
+        List<CarModel> mapped = Utils.map(l);
 
-        List<CarModelClass> FILTERED_CARS = Filtering.filter(carsThatAreMappedWithUtilsClass, 0, 1000, false);
+        List<CarModel> filtered = Filtering.filter(mapped, 0, 1000, false);
 
-        if(FILTERED_CARS.size() > 1 && FILTERED_CARS.get(0).getPrice() > 2000 && FILTERED_CARS.get(1).getModel().equals("AUDI")) {
-            new carRepository().save(FILTERED_CARS);
+        if(filtered.size() > 1 && filtered.get(0).getPrice() > 2000 && filtered.get(1).getModel().equals("AUDI")) {
+            new carRepository().save(filtered);
         }
     }
 
@@ -27,11 +27,11 @@ public class Car_Service {
         try (Stream<String> stream = Files.lines(Paths.get(relativeFileThatIsReadFromTheSystem.toURI()))) {
             l = stream.collect(Collectors.toList());
         }
-        List<CarModelClass> carsThatAreMappedWithUtilsClass = Utils.doTheMapping(l);
-        new CarRepository().save(carsThatAreMappedWithUtilsClass);*/
+        List<CarModel> mapped = Utils.map(l);
+        new CarRepository().save(mapped);*/
     }
 	
-    public static void printReportOneAndReportTwo(List<CarModelClass> cars, boolean printOnlyTheFirstReport) {
+    public static void printReport(List<CarModel> cars, boolean printOnlyTheFirstReport) {
         // print header
         System.out.println("===================");
         System.out.println("= Standard Report =");
@@ -39,9 +39,9 @@ public class Car_Service {
         System.out.println();
 
         // print cars
-        for(CarModelClass car : cars) {
+        for(CarModel car : cars) {
             System.out.println(String.format("Model: %s", car.getModel()));
-            System.out.println(String.format("Year: %s", car.getThisIsTheYear()));
+            System.out.println(String.format("Year: %s", car.getYear()));
             System.out.println(String.format("Price: %s", car.getPrice()));
             System.out.println(String.format("Color: %s", car.getColor()));
             System.out.println(String.format("Number Of Doors: %s", car.getNumberOfDoors()));
@@ -68,7 +68,7 @@ public class Car_Service {
         System.out.println();
 
         // print cars
-        for(CarModelClass car : cars) {
+        for(CarModel car : cars) {
             System.out.println(String.format("Model: %s", car.getModel()));
             System.out.println();
         }

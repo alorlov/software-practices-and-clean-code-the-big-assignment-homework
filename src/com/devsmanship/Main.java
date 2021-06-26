@@ -2,7 +2,7 @@ package com.devsmanship;
 
 import java.io.IOException;
 
-public class Program {
+public class Main {
 
     public static void main(String[] args) throws IOException {
         if(args.length == 0) {
@@ -15,7 +15,7 @@ public class Program {
             new Start().start();
         } else {
             if(action.equals("save")) {
-                new Car_Service().save();
+                new CarService().save();
             } else {
                 System.out.println("The action is NoT VALID!!");
             }
