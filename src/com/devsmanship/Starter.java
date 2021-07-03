@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Start {
+public class Starter {
 
     public void start() throws IOException {
         List<String> l = ImportCars.file;
-        List<CarModel> mapped = Utils.map(l);
-        List<CarModel> filtered = Filtering.filter(mapped,2000, 0, true);
+        List<Car> mapped = Utils.map(l);
+        List<Car> filtered = Filtering.filter(mapped,2000, 0, true);
         CarService.printReport(filtered, false);
     }
 }

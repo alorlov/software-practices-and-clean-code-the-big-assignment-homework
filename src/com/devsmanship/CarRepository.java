@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CarRepository {
 
-    public void save(List<CarModel> cars) {
+    public void save(List<Car> cars) {
         System.out.println(cars.size() + " cars saved.");
 
         CarService.printReport(cars, true);

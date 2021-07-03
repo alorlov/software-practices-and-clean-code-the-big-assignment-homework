@@ -1,6 +1,6 @@
 package com.devsmanship;
 
-public class CarModel {
+public class Car {
 
     private String model;
     private int year;

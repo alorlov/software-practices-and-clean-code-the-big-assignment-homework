@@ -11,27 +11,21 @@ import java.util.stream.Stream;
 public class CarService {
 
     public void save() throws IOException {
-        List<String> l = ImportCars.file;
-        List<CarModel> mapped = Utils.map(l);
+        List<String> carLines = ImportCars.carLines;
+        List<Car> mappedCars = Utils.map(carLines);
 
-        List<CarModel> filtered = Filtering.filter(mapped, 0, 1000, false);
+        List<Car> filteredCars = Filtering.filter(mappedCars, 0, 1000, false);
 
-        if(filtered.size() > 1 && filtered.get(0).getPrice() > 2000 && filtered.get(1).getModel().equals("AUDI")) {
-            new carRepository().save(filtered);
+        boolean enoughCount = filteredCars.size() > 1
+        boolean correctFirstCarPrice = filteredCars.get(0).getPrice() > 2000
+        boolean correctSecondCarModel = filteredCars.get(1).getModel().equals("AUDI")
+
+        if(enoughCount && correctFirstCarPrice && correctSecondCarModel) {
+            new carRepository().save(filteredCars);
         }
-    }
-
-    public void test() {
-        /*File relativeFileThatIsReadFromTheSystem = new File("src/com/devsmanship/import.txt");
-
-        try (Stream<String> stream = Files.lines(Paths.get(relativeFileThatIsReadFromTheSystem.toURI()))) {
-            l = stream.collect(Collectors.toList());
-        }
-        List<CarModel> mapped = Utils.map(l);
-        new CarRepository().save(mapped);*/
     }
 	
-    public static void printReport(List<CarModel> cars, boolean printOnlyTheFirstReport) {
+    public static void printFirstReport(List<Car> cars) {
         // print header
         System.out.println("===================");
         System.out.println("= Standard Report =");
@@ -39,7 +33,7 @@ public class CarService {
         System.out.println();
 
         // print cars
-        for(CarModel car : cars) {
+        for(Car car : cars) {
             System.out.println(String.format("Model: %s", car.getModel()));
             System.out.println(String.format("Year: %s", car.getYear()));
             System.out.println(String.format("Price: %s", car.getPrice()));
@@ -48,19 +42,10 @@ public class CarService {
             System.out.println();
         }
 
-        // print footer
-        System.out.println();
-        System.out.println(String.format("Printed %s cars", cars.size()));
-        System.out.println("=================");
-        System.out.println("= End of Report =");
-        System.out.println("=================");
+        printFooter(cars)
 
 
-        if(printOnlyTheFirstReport) {
-            return;
-        }
-
-
+    printSecondReport(cars)
         // print header
         System.out.println("=====================");
         System.out.println("= Only Model Report =");
@@ -68,12 +53,15 @@ public class CarService {
         System.out.println();
 
         // print cars
-        for(CarModel car : cars) {
+        for(Car car : cars) {
             System.out.println(String.format("Model: %s", car.getModel()));
             System.out.println();
         }
 
-        // print footer
+        printFooter(cars)
+    }
+
+    private printFooter(cars) {
         System.out.println();
         System.out.println(String.format("Printed %s cars", cars.size()));
         System.out.println("=================");
